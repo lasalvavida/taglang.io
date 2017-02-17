@@ -1,7 +1,6 @@
 <template>
   <div>
-    <post v-for="post in posts" v-bind:post="post">
-    </post>
+    <post class="post" v-for="post in posts" v-bind:key="post.id" v-bind:post="post"/>
   </div>
 </template>
 

@@ -1,45 +1,35 @@
 <template>
-  <div id="app">
+  <div>
     <div id="header">
-      <a class="nav link" href="index.html">
+      <router-link to="/blog" class="nav link image">
         <img src="./images/home.png"/>
+      </router-link>
       </a>
-      <a class="sm link" href="http://github.com/lasalvavida">
+      <a class="sm link image" href="http://github.com/lasalvavida">
         <img src="./images/github.png"/>
       </a>
-      <a class="sm link" href="https://www.linkedin.com/in/robert-taglang-42ba53b8">
+      <a class="sm link image" href="https://www.linkedin.com/in/robert-taglang-42ba53b8">
         <img src="./images/linkedin.png"/>
       </a>
+      <router-link to="/about" class="sm link text">
+        About Me
+      </router-link>
     </div>
     <div id="content">
-      <post-viewer v-bind:posts="posts"></post-viewer>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import PostViewer from './components/PostViewer'
-import getPosts from './lib/api/getPosts'
+import VueRouter from 'vue-router'
+import 'purecss/build/pure.css'
+import 'purecss/build/grids-responsive.css'
 
 export default {
   name: 'app',
   components: {
-    PostViewer
-  },
-  data () {
-    return {
-      posts: []
-    }
-  },
-  mounted () {
-    var that = this
-    getPosts().then(function (postsArray) {
-      var postsArrayLength = postsArray.length
-      for (var i = 0; i < postsArrayLength; i++) {
-        var post = postsArray[i]
-        that.posts.push(post)
-      }
-    })
+    VueRouter
   }
 }
 </script>
@@ -83,7 +73,17 @@ export default {
     top: 2px;
 }
 
-.link:before {
+.sm.link.text {
+  font-size: 22px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  margin-top: 5px;
+}
+
+.sm.link.text:hover {
+  color: gray;
+}
+
+.link.image:before {
     background: none;
     border-radius: 10px;
     bottom: 0;
@@ -95,7 +95,7 @@ export default {
     top: 0;
 }
 
-.link:hover:before {
+.link.image:hover:before {
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -189,4 +189,5 @@ input[type=range]:focus::-ms-fill-upper {
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 </style>

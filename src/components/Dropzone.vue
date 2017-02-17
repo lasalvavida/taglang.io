@@ -1,7 +1,7 @@
 <template>
   <div>
     <form action="dummy" class="dropzone" ref="dropForm">
-      <button class="cancel" v-show="result !== undefined" v-on:click="removeAllFiles()" type="button">
+      <button class="cancel pure-button" v-show="result !== undefined" v-on:click="removeAllFiles()" type="button">
         <icon name="close"/>
       </button>
     </form>
@@ -93,21 +93,23 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-weight: bold;
 }
 
 .dropzone {
   border: 2px solid #E5E5E5;
+  border-radius: 15px;
   font-family: 'Arial', sans-serif;
   letter-spacing: 0.2px;
-  color: #777;
+  background-color: #222222;
+  color: white;
   transition: background-color .2s linear;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .dropzone:hover {
-  background-color: lightgray;
+  background-color: #444444;
 }
 
 .dz-preview {

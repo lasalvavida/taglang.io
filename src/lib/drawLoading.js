@@ -27,7 +27,11 @@ function drawLoading (context, width, height, options, state) {
   if (options.fillStyle) {
     context.fillStyle = options.fillStyle
   } else {
-    context.fillStyle = 'rgba(0, 0, 0, 0.5)'
+    if (options.imageData) {
+      context.fillStyle = 'rgba(0, 0, 0, 0.5)'
+    } else {
+      context.fillStyle = '#444444'
+    }
   }
   context.fill()
   if (options.lineWidth) {
@@ -43,7 +47,7 @@ function drawLoading (context, width, height, options, state) {
   context.beginPath()
   context.arc(Math.floor(width / 2.0),
     Math.floor(height / 2.0),
-    Math.min(width / 5.0, height / 2.0),
+    Math.min(width / 5.0, height / 5.0),
     options.angle,
     options.angle + Math.PI / 3.0)
   context.stroke()
