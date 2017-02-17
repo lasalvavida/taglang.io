@@ -1,5 +1,5 @@
 <?php
-require_once('../getDbConnection.php');
+require_once('../../private/getDbConnection.php');
 
 if (!isset($_GET['numPosts'])) {
   $numPosts = 3;
