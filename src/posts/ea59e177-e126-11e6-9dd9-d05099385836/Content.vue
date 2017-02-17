@@ -1,16 +1,23 @@
 <template>
   <div>
-    <div class="content">
+    <div>
       This demo uses <a href="https://threejs.org/">three.js</a> to show the 3D Hessian Determinant Response of the classic Lenna image.
     </div>
-    <div class="wrapper">
-      <div class="container" ref="container">
-        <div class="canvas-container" v-show="ready" ref="canvasContainer"/>
-        <div class="loading" v-show="!ready">
-          Loading...
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-2-3">
+        <div class="l-box container" ref="container">
+          <div v-show="ready" ref="canvasContainer"/>
+          <canvas class="placeholder" v-show="loading" ref="loadingCanvas"/>
+          <div class="placeholder enable" v-show="!enabled">
+            <button v-on:click="enable()" class="pure-button">Enable</button>
+          </div>
         </div>
       </div>
-      <canvas class="image-canvas" ref="imageCanvas" width="300" height="300"/>
+      <div class="pure-u-1 pure-u-md-1-3">
+        <div class="l-box">
+          <canvas class="image-canvas" ref="imageCanvas" width="300" height="300"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,29 +26,46 @@
 var Three = require('three')
 import {Matrix2d, SURF, Image as VImage} from 'visionjs'
 import OrbitControls from 'three-orbit-controls'
+import drawLoading from '../../lib/drawLoading'
 
-var image
 var Controls = OrbitControls(Three)
 
 export default {
   data () {
     return {
+      enabled: false,
+      image: undefined,
+      loading: false,
       ready: false
     }
   },
   methods: {
-    imageLoaded: function () {
-      var that = this
+    imageLoaded () {
       var imageCanvas = this.$refs.imageCanvas
       var width = imageCanvas.width
       var height = imageCanvas.height
 
       var context = imageCanvas.getContext('2d')
-      context.drawImage(image, 0, 0, width, height)
+      context.drawImage(this.image, 0, 0, width, height)
+    },
+    enable () {
+      var that = this
+      this.enabled = true
+      this.loading = true
+      var imageCanvas = this.$refs.imageCanvas
+      var width = imageCanvas.width
+      var height = imageCanvas.height
+
+      var container = this.$refs.container
+      var loadingCanvas = this.$refs.loadingCanvas
+      loadingCanvas.width = container.offsetWidth
+      loadingCanvas.height = container.offsetHeight
+      var loading = drawLoading(loadingCanvas.getContext('2d'), loadingCanvas.width, loadingCanvas.height)
+
+      var context = imageCanvas.getContext('2d')
       var imageData = context.getImageData(0, 0, width, height)
       var originalImage = VImage.fromRawData(width, height, imageData.data)
 
-      var container = this.$refs.container
       var canvasContainer = this.$refs.canvasContainer
       var scene = new Three.Scene()
       var camera = new Three.PerspectiveCamera(75, width / height, 0.1, 1000)
@@ -160,49 +184,40 @@ export default {
             requestAnimationFrame(render)
           }
           render()
+          loading.running = false
+          that.loading = false
           that.ready = true
         })
     }
   },
   mounted: function () {
-    image = new Image()
-    image.src = require('../../images/Lenna.png')
-    image.addEventListener('load', this.imageLoaded, false)
+    this.image = new Image()
+    this.image.src = require('../../images/Lenna.png')
+    this.image.addEventListener('load', this.imageLoaded, false)
   }
 }
 </script>
 
 <style scoped>
+.placeholder {
+  height: 300px;
+}
+
 .container {
-  float: left;
-  position: relative;
-  width: calc(100% - 400px);
-  left: 0;
-  top: 0;
-  border-style: solid;
-  border-width: 1px;
+  height: 100%;
+  min-height: 300px;
 }
 
-.content {
-  padding-bottom: 20px;
+.enable {
+  background-color: #222222;
+  transition: background-color .2s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.loading {
-  text-align: center;
-  padding-bottom: 53.5%;
-  width: 100%;
-}
-
-.image-canvas {
-  float: left;
-  clear: right;
-  position: relative;
-}
-
-.wrapper {
-  content: "";
-  clear: both;
-  display: table;
-  width: 100%;
+.enable:hover {
+  background-color: #444444;
 }
 </style>

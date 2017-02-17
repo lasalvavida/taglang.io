@@ -1,31 +1,43 @@
 <template>
-  <div class="post-content">
-    <div class="table-div">
-      <div class="table-title">Original</div>
-      <div class="table-title">Kernel Convolution Average Filter</div>
-      <div class="table-title">Integral Image Average Filter</div>
-    </div>
-    <div class="table-div">
-      <div><canvas ref="originalCanvas" width="250" height="250"></canvas></div>
-      <div><canvas ref="kernelCanvas" width="250" height="250"></canvas></div>
-      <div><canvas ref="integralCanvas" width="250" height="250"></canvas></div>
-    </div>
-    <div class="table-div">
-      <div>
-        <span>Size:&nbsp;</span>
-        <select v-model="size">
-          <option v-for="option in sizeOptions" v-bind:value="option.value">
-            {{ option.text }}
-          </option>
-        </select>
+  <div class="pure-g">
+    <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+      <div class="l-box">
+        <div>Original</div>
+        <div><canvas ref="originalCanvas" width="250" height="250"></canvas></div>
+        <div>
+          <form class="pure-form">
+            <fieldset>
+              <label>Size:</label>
+              <select v-model="size">
+                <option v-for="option in sizeOptions" v-bind:value="option.value">
+                  {{ option.text }}
+                </option>
+              </select>
+              <button class="pure-button pure-button-primary" v-on:click="compute">Start</button>
+            </fieldset>
+          </form>
+        </div>
       </div>
-      <div v-show="kernelTime !== undefined">Time:&nbsp;<span> {{ kernelTime }} </span></div>
-      <div v-show="integralTime !== undefined">Time:&nbsp;<span> {{ integralTime }} </span></div>
     </div>
-    <div class="table-div">
-      <div><button v-on:click="compute">Start</button></div>
+    <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+      <div class="l-box">
+        <div>Kernel Convolution Average Filter</div>
+        <div><canvas ref="kernelCanvas" width="250" height="250"></canvas></div>
+        <div v-show="kernelTime !== undefined">Time:&nbsp;<span> {{ kernelTime }} </span></div>
+      </div>
     </div>
-    <canvas ref="barChart"></canvas>
+    <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+      <div class="l-box">
+        <div>Integral Image Average Filter</div>
+        <div><canvas ref="integralCanvas" width="250" height="250"></canvas></div>
+        <div v-show="integralTime !== undefined">Time:&nbsp;<span> {{ integralTime }} </span></div>
+      </div>
+    </div>
+    <div class="pure-u-1-1">
+      <div class="l-box">
+        <canvas ref="barChart"></canvas>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -186,25 +198,7 @@ export default {
 </script>
 
 <style scoped>
-button {
-  width: 100%;
-}
-
-canvas {
-  max-width: 900px;
-}
-
-.table-div {
-	display : table-row;
-}
-
-.table-div div {
-	display : table-cell;
-	padding : 5px;
-	text-align : center;
-}
-
-.table-title {
-	font-weight: bold;
+div {
+  text-align: center;
 }
 </style>

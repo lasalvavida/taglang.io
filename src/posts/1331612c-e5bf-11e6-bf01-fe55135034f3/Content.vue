@@ -19,7 +19,7 @@
       <input class="slider" type="range" min="0" max="256" v-model="threshold" v-on:mousemove="drawThresholded"/>
     </div>
     <div>
-      <button class="button" v-on:click="compute()" :disabled="!loaded">Start</button>
+      <button class="button pure-button pure-button-primary" v-on:click="compute()" :disabled="!loaded">Start</button>
     </div>
   </div>
 </template>

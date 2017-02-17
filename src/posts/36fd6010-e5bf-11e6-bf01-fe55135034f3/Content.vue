@@ -77,7 +77,7 @@
 
 <script>
   import katex from 'katex'
-  require('../../../node_modules/katex/dist/katex.css')
+  import 'katex/dist/katex.css'
 
   export default {
     data () {
