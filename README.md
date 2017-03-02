@@ -1,6 +1,6 @@
 # taglang.io
 
-My personal website and blog, built using Vue.js as the framework. Requires a server that supports PHP.
+My personal website and blog, built using Vue.js as the framework. For deployment, requires a server that supports PHP.
 
 Running locally requires an installation of PHP that is accessible in your PATH.
 
