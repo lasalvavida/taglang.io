@@ -9,31 +9,30 @@
             <a href="https://github.com/lasalvavida">@lasalvavida</a>
             on GitHub.
           </p>
+          <h2>Work</h2>
           <p>
-
+            I work at
+            <a href="https://privatemachines.com/">Private Machines</a>
+            in Brooklyn, NY as a software developer.
+          </p>
+          <h2>Open Source</h2>
+          <p>
+            I maintain the 
+            <a href="https://github.com/KhronosGroup/COLLADA2GLTF">COLLADA2GLTF</a>
+            project for converting 3D COLLADA (DAE) models to <a href="https://www.khronos.org/gltf">glTF</a>.
           </p>
           <h2>School</h2>
           <p>
-            I am currently a senior at Drexel University
-            completing my BS/MS in Computer Engineering.
-            I will graduate in June of 2017 with both degrees.
+            I graduated from Drexel University in June 2017,
+            BS/MS in Computer Engineering.
           </p>
           <p>
-            My thesis is on the topic of real-time video fusion on FPGA.
-            The objective is to design a system that can take multiple, unaligned
-            video inputs and use feature detection to align them, and then
-            use the sharpest parts of each to generate a single output video feed.
-          </p>
-          <h2>Work</h2>
-          <p>
-            I work part time at <a href="https://www.agi.com/">Analytical Graphics Inc.</a>
-            as a software developer on <a href="http://cesiumjs.org/">Cesium</a>.
-          </p>
-          <p>
-            My focus is on optimization of 3D assets including work on
-            <a href="https://github.com/AnalyticalGraphicsInc/gltf-pipeline">glTF-Pipeline</a>,
-            a Node.js optimizer for <a href="https://www.khronos.org/gltf">glTF</a>
-            assets as well as contributions to the glTF open standard specification.
+            The thesis and its accompanying work are all open-source. 
+            Current drafts and LaTeX sources are available on 
+            <a href="https://github.com/lasalvavida/thesis-draft">GitHub</a>.
+
+            And the FPGA IP block sources can be found as the
+            <a href="https://github.com/lasalvavida/Zybo-Open-Source-Video-IP-Toolbox">Zybo Open Source Video IP Toolbox</a>.
           </p>
           <h2>Contact</h2>
           <p>
@@ -44,11 +43,12 @@
           </p>
           <p>
             <a href="static/resume.pdf" download="resume.pdf"><icon name="file-text"/></a>&nbsp;CV
+          </p>
         </div>
       </div>
       <div class="pure-u-1-3">
         <div class="l-box">
-          <img class="pure-img bio-image" src="../images/bio-christmas.jpg"/>
+          <img class="pure-img bio-image" src="../images/bio-thanksgiving.jpg"/>
         </div>
         <div class="l-box">
           <img class="pure-img bio-image" src="../images/bio-star.jpg"/>
