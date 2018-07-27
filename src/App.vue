@@ -18,7 +18,6 @@
     <div id="content">
       <router-view></router-view>
     </div>
-    <Content/>
   </div>
 </template>
 
@@ -27,12 +26,9 @@ import VueRouter from 'vue-router'
 import 'purecss/build/pure.css'
 import 'purecss/build/grids-responsive.css'
 
-import Content from './posts/908d8f07-e15b-490c-ad19-7d14302d9ad4/Content.vue'
-
 export default {
   name: 'app',
   components: {
-    Content,
     VueRouter
   }
 }
