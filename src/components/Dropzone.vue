@@ -56,6 +56,9 @@
       removeAllFiles: function () {
         this.dropzone.removeAllFiles()
         this.result = undefined
+        if (this.imageRemoved) {
+          this.imageRemoved()
+        }
       }
     },
     mounted () {
@@ -82,7 +85,7 @@
         previewTemplate: that.$refs.previewTemplate.innerHTML
       })
     },
-    props: ['imageLoaded']
+    props: ['imageLoaded', 'imageRemoved']
   }
 </script>
 
