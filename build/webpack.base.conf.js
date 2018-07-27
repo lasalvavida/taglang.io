@@ -60,7 +60,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules(?![\\/]vue-awesome[\\/])/
+        exclude: /node_modules(?![\\/](vue-awesome|webgl-png-compress)[\\/])/
       },
       {
         test: /\.json$/,
