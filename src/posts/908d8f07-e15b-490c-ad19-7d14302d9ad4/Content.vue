@@ -9,11 +9,9 @@
     <div>
       <dropzone class="image-drop" v-bind:imageLoaded="imageDropped" v-bind:imageRemoved="imageRemoved"></dropzone>
     </div> 
-    <div>
-      <canvas v-show="false" ref="imageCanvas"></canvas>
-    </div>
-    <div>
-      <canvas v-show="false" ref="canvas3d"></canvas>
+    <div v-show="false">
+      <canvas ref="imageCanvas"></canvas>
+      <canvas ref="canvas3d"></canvas>
     </div>
     <div>
       <div v-if="loaded">
@@ -30,7 +28,7 @@
           Compressed Size: {{ compressedSizeString }}
         </div>
         <div>
-          Compression: {{ Math.floor(-compressedSize / originalSize * 1e4) / 1e2 + 100 }}%
+          Compression: {{ Math.floor((1.0 - (compressedSize / originalSize)) * 1e4) / 1e2 }}%
         </div>
       </div>
     </div>
@@ -48,13 +46,13 @@ export default {
   data () {
     return {
       computed: false,
-      drawing: false,
       image: undefined,
       loaded: false,
       matrix: undefined,
       originalSize: 0,
       compressedSize: 0,
-      paletteSize: 256
+      paletteSize: 256,
+      scaledWidth: 512
     }
   },
   computed: {
@@ -64,45 +62,62 @@ export default {
       if (sizeString.length <= 3) {
         return sizeString + 'B'
       }
-      compressedSize = Math.floor(compressedSize / 1e3)
+      compressedSize = Math.floor(compressedSize / 1e1) / 1e2
       sizeString = compressedSize.toString()
-      if (sizeString.length <= 3) {
+      if (sizeString.length <= 6) {
         return sizeString + 'KB'
       }
-      compressedSize = Math.floor(compressedSize / 1e3)
+      compressedSize = Math.floor(compressedSize / 1e1) / 1e2
       sizeString = compressedSize.toString()
-      if (sizeString.length <= 3) {
+      if (sizeString.length <= 6) {
         return sizeString + 'MB'
       }
-      compressedSize = Math.floor(compressedSize / 1e3)
+      compressedSize = Math.floor(compressedSize / 1e1) / 1e2
       sizeString = compressedSize.toString()
-      if (sizeString.length <= 3) {
+      if (sizeString.length <= 6) {
         return sizeString + 'GB'
       }
-      compressedSize = Math.floor(compressedSize / 1e3)
+      compressedSize = Math.floor(compressedSize / 1e1) / 1e2
       return compressedSize.toString() + 'TB'
+    },
+    scaledHeight () {
+      return Math.floor(this.image.height * this.scaledWidth / this.image.width)
     }
   },
   methods: {
     compute () {
       const imageCanvas = this.$refs.imageCanvas
-      const width = this.image.width
-      const height = this.image.height
+      const context = imageCanvas.getContext('2d')
       const canvas3d = this.$refs.canvas3d
-      canvas3d.width = width
-      canvas3d.height = height
+      canvas3d.width = this.scaledWidth
+      canvas3d.height = this.scaledHeight
+
       const gl = canvas3d.getContext('webgl')
-      gl.viewport(0, 0, width, height)
-      const data = compress(this.image, imageCanvas, gl, this.paletteSize, 4)
-      const palette = condensePalette(data.palette)
-      const png = writePNG(data.pixelData, palette, width, height)
+      gl.viewport(0, 0, this.scaledWidth, this.scaledHeight)
+
+      imageCanvas.width = this.scaledWidth
+      imageCanvas.height = this.scaledHeight
+      context.drawImage(this.image, 0, 0, this.scaledWidth, this.scaledHeight)
+      const scaledImageData = context.getImageData(0, 0, this.scaledWidth, this.scaledHeight)
+
+      let palette = compress(scaledImageData, this.scaledWidth, this.scaledHeight, gl, this.paletteSize, 4)
+      palette = condensePalette(palette)
+
+      imageCanvas.width = this.image.width
+      imageCanvas.height = this.image.height
+
+      context.drawImage(this.image, 0, 0)
+      const imageData = context.getImageData(0, 0, this.image.width, this.image.height)
+      const png = writePNG(imageData, palette, this.image.width, this.image.height)
       this.compressedSize = png.length
       this.computed = true
       this.download('compressed.png', png)
     },
     download (filename, data) {
       const element = document.createElement('a')
-      element.setAttribute('href', 'data:image/png;base64,' + data.toString('base64'))
+      element.setAttribute('href', URL.createObjectURL(new Blob([data], {
+        type: 'image/png'
+      })))
       element.setAttribute('download', filename)
       element.style.display = 'none'
       document.body.appendChild(element)
@@ -114,19 +129,13 @@ export default {
       this.loaded = false
       this.image.src = image
       this.originalSize = image.length / 1.37
+      this.paletteSize = 256
     },
     imageRemoved () {
       this.loaded = false
+      this.compressedSize = 0
     },
     imageLoaded () {
-      const imageCanvas = this.$refs.imageCanvas
-      const width = this.image.width
-      const height = this.image.height
-      imageCanvas.width = width
-      imageCanvas.height = height
-
-      var context = imageCanvas.getContext('2d')
-      context.drawImage(this.image, 0, 0, width, height)
       this.loaded = true
     }
   },

@@ -4,14 +4,12 @@
       <button class="cancel pure-button" v-show="result !== undefined" v-on:click="removeAllFiles()" type="button">
         <icon name="close"/>
       </button>
-    </form>
-    <div ref="dictDefaultMessage" v-show="false">
-      <div class="default-message">
+      <div class="default-message dz-message" v-show="result === undefined">
         <icon name="cloud-upload"/>
         <br/>
         Drop files here
       </div>
-    </div>
+    </form>
     <div ref="previewTemplate" v-show="false">
       <div class="dz-preview dz-file-preview">
         <div class="dz-details">
@@ -53,7 +51,7 @@
       Icon
     },
     methods: {
-      removeAllFiles: function () {
+      removeAllFiles () {
         this.dropzone.removeAllFiles()
         this.result = undefined
         if (this.imageRemoved) {
@@ -81,7 +79,6 @@
           this.addFile(file)
         },
         paramName: 'file',
-        dictDefaultMessage: that.$refs.dictDefaultMessage.innerHTML,
         previewTemplate: that.$refs.previewTemplate.innerHTML
       })
     },
