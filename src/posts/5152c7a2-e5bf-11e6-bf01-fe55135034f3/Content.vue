@@ -5,7 +5,7 @@
         <div>Original</div>
         <div><canvas ref="originalCanvas" width="250" height="250"></canvas></div>
         <div>
-          <form class="pure-form">
+          <form class="pure-form" onsubmit="return false">
             <fieldset>
               <label>Size:</label>
               <select v-model="size">
