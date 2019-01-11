@@ -1,6 +1,6 @@
 ---
 title: WebGL PNG Compression
-date: 2017-07-27 0:00.00
+date: 2018-07-27 0:00.00
 ---
 
 # {{ $page.frontmatter.title }}

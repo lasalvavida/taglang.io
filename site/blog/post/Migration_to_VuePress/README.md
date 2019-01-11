@@ -117,4 +117,6 @@ this.$site.pages
 
 Doing this to locate the previous/next page is done at site build time, so all I have to do is include my navigation component in the posts, and everything else just works.
 
+If you're curious and want to check it out, all of the site code is available on [GitHub](https://github.com/lasalvavida/taglang.io).
+
 <BlogPostNav/>
