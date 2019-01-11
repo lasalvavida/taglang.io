@@ -1,0 +1,22 @@
+{
+  "name": "taglang.io",
+  "version": "2.0.0",
+  "description": "My personal blog and website",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "Rob Taglang <rob@taglang.io>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "chart.js": "^2.7.3",
+    "katex": "^0.10.0",
+    "three": "^0.100.0",
+    "three-orbit-controls": "^82.1.0",
+    "visionjs": "0.0.27",
+    "vue-awesome": "^3.2.0",
+    "vuepress": "^1.0.0-alpha.30",
+    "webgl-png-compress": "^1.1.0"
+  }
+}
