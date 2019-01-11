@@ -35,14 +35,14 @@ to set up a dead-simple Vue.js sandbox with hot-reloading. Once you do, there's 
 
 [Nuxt.js](https://nuxtjs.org/) is an awesome project. It lets you build Vue projects as a server that pre-renders your pages and hosts them. I wouldn't be able to do this with my current hosting, but Nuxt also supports building and exporting a static site. This is fine as long as you don't need to respond dynamically to HTTP requests (i.e. your site is a static site).
 
-I think Nuxt is probably great if you are using it a service (what it is designed for), but I had some trouble getting the built static site to work properly for my ends.
+I think Nuxt is probably great if you are using it as a service (what it is designed for), but I had some trouble getting the built static site to work properly for my ends.
 
 Nuxt requires some plugin integration for certain Vue plugins to work, and it isn't always clear what needs to be done from a user's perspective. It seems like a lot of this is on the plugin maintainer's side, but smaller plugin maintainers may not have the time/resources to make sure that their plugin works properly with Nuxt.
 
 For example, [bootstrap-vue](https://bootstrap-vue.js.org/) directly supports Nuxt builds, and works pretty much out of the box. However, [vue-awesome](https://bootstrap-vue.js.org/), which I use here for [Font Awesome](https://fontawesome.com/) integration seems to have some
 [problems](https://github.com/nuxt/nuxt.js/issues/174).
 
-**Update: I was working on this a few months ago. I have been informed that vue-awesome integration has since been fixed**
+**Update: I was working on this a few months ago. I have been informed that vue-awesome integration has since been fixed, along with a helpful [codesandbox example](https://codesandbox.io/s/github/manniL/nuxt-vue-awesome-example/tree/master/).**
 
 > [@TheAlexLichter](https://twitter.com/TheAlexLichter) Issues w/ vue-awesome are gone (you can use `build.transpile` for it) and such things are usually an exception.
 
