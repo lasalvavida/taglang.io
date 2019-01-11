@@ -42,6 +42,10 @@ Nuxt requires some plugin integration for certain Vue plugins to work, and it is
 For example, [bootstrap-vue](https://bootstrap-vue.js.org/) directly supports Nuxt builds, and works pretty much out of the box. However, [vue-awesome](https://bootstrap-vue.js.org/), which I use here for [Font Awesome](https://fontawesome.com/) integration seems to have some
 [problems](https://github.com/nuxt/nuxt.js/issues/174).
 
+**Update: I was working on this a few months ago. I have been informed that vue-awesome integration has since been fixed**
+
+> [@TheAlexLichter](https://twitter.com/TheAlexLichter) Issues w/ vue-awesome are gone (you can use `build.transpile` for it) and such things are usually an exception.
+
 I also had difficulty figuring out a clean way to do page navigation in a way that would be generated from the posts dynamically and still work when exported as a static site. I'm sure there is probably a way, but this setback, coupled with the amount of work I found myself needing to do in order to integrate external plugins and libraries (that would surely break at some point), led me to look elsewhere.
 
 ### Enter VuePress
