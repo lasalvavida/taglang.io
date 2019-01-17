@@ -35,6 +35,8 @@ Convert COLLADA models to glTF in your browser.
 
 </div>
 
+<BlogPostNav/>
+
 <script>
   import * as Three from 'three';
   import GLTFLoader from 'three-gltf-loader'
