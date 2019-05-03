@@ -6,18 +6,23 @@
   "directories": {
     "lib": "lib"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lasalvavida/taglang.io.git"
+  },
   "author": "Rob Taglang <rob@taglang.io>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-vue": "^2.0.0-rc.11",
-    "chart.js": "^2.7.3",
-    "katex": "^0.10.0",
+    "bootstrap-vue": "^2.0.0-rc.19",
+    "chart.js": "^2.8.0",
+    "jquery": "^3.4.1",
+    "katex": "^0.10.1",
     "three": "^0.100.0",
-    "three-gltf-loader": "^1.100.0",
+    "three-gltf-loader": "^1.104.0",
     "three-orbit-controls": "^82.1.0",
     "visionjs": "0.0.27",
-    "vue-awesome": "^3.2.0",
-    "vuepress": "^1.0.0-alpha.30",
+    "vue-awesome": "^3.5.2",
+    "vuepress": "^1.0.0-alpha.47",
     "webgl-png-compress": "^1.1.0"
   }
 }
