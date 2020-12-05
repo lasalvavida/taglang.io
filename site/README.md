@@ -1,3 +1,3 @@
 # Blog
 
-<BlogPageView/>
+<BlogPageView path="/blog/" />
