@@ -10,9 +10,7 @@ on GitHub.
 
 ## Work
 
-I work at
-[Private Machines Inc.](https://privatemachines.com)
-in Brooklyn, NY as a software developer.
+I work at Google NYC as a software developer.
 
 ## Open Source
 
