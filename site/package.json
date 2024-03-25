@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.0.0-rc.19",
     "chart.js": "^2.9.4",
     "jquery": "^3.5.1",
-    "katex": "^0.10.1",
+    "katex": "^0.16.10",
     "three": "^0.137.0",
     "three-gltf-loader": "^1.104.0",
     "three-orbit-controls": "^82.1.0",
